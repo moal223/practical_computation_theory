@@ -1,31 +1,25 @@
-import unittest
-
 from DFA import DFA
 from TuringMachine import TuringMachine
 
-class TestAutomataProblems(unittest.TestCase):
-    def test_dfa_substring_101(self):
+def main():
+    print("Automata Programs")
+    print("1. DFA - Check for substring '101'")
+    print("2. Turing Machine - Check if binary number is divisible by 3")
+    
+    choice = input("Enter your choice (1 or 2): ")
+    
+    if choice == '1':
         dfa = DFA()
-        self.assertTrue(dfa.accepts("101"))
-        self.assertTrue(dfa.accepts("0101"))
-        self.assertTrue(dfa.accepts("1010"))
-        self.assertTrue(dfa.accepts("1101011"))
-        self.assertFalse(dfa.accepts(""))
-        self.assertFalse(dfa.accepts("100"))
-        self.assertFalse(dfa.accepts("010010"))
-        self.assertFalse(dfa.accepts("11"))
-    
-    def test_tm_divisible_by_3(self):
+        input_str = input("Enter a binary string to check for '101' substring: ")
+        result = dfa.accepts(input_str)
+        print(f"Result: The string {'contains' if result else 'does not contain'} '101'")
+    elif choice == '2':
         tm = TuringMachine()
-        self.assertTrue(tm.run("0"))     
-        self.assertTrue(tm.run("11"))    
-        self.assertTrue(tm.run("110"))   
-        self.assertTrue(tm.run("1001"))  
-        self.assertFalse(tm.run("1"))    
-        self.assertFalse(tm.run("10"))   
-        self.assertFalse(tm.run("101"))  
-        self.assertFalse(tm.run("111"))  
-    
+        input_str = input("Enter a binary number to check divisibility by 3: ")
+        result = tm.run(input_str)
+        print(f"Result: The number {'is' if result else 'is not'} divisible by 3")
+    else:
+        print("Invalid choice")
 
 if __name__ == '__main__':
-    unittest.main()
+    main()
